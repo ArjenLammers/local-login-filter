@@ -4,31 +4,26 @@
 
 package localloginfilter.proxies.microflows;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.mendix.core.Core;
 import com.mendix.systemwideinterfaces.core.IContext;
 
-public class Microflows
+public final class Microflows
 {
 	/**
-	 * @deprecated
-	 * The default constructor of the Microflows class should not be used.
-	 * Use the static microflow invocation methods instead.
+	 * Private constructor to prevent instantiation of this class. 
 	 */
-	@java.lang.Deprecated(since = "9.12", forRemoval = true)
-	public Microflows() {}
+	private Microflows() {}
 
 	// These are the microflows for the LocalLoginFilter module
+	public static com.mendix.core.actionmanagement.MicroflowCallBuilder afterStartupBuilder()
+	{
+		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("LocalLoginFilter.AfterStartup");
+		return builder;
+	}
+
 	public static boolean afterStartup(IContext context)
 	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		return (java.lang.Boolean) Core.microflowCall("LocalLoginFilter.AfterStartup").withParams(params).execute(context);
-	}
-	public static boolean eXAMPLE_FilterUser(IContext context, system.proxies.User _exampleUser)
-	{
-		Map<java.lang.String, Object> params = new HashMap<>();
-		params.put("ExampleUser", _exampleUser == null ? null : _exampleUser.getMendixObject());
-		return (java.lang.Boolean) Core.microflowCall("LocalLoginFilter.EXAMPLE_FilterUser").withParams(params).execute(context);
+		Object result = afterStartupBuilder().execute(context);
+		return (boolean) result;
 	}
 }

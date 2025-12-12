@@ -15,12 +15,13 @@ import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
 import localloginfilter.impl.LocalLoginFilterAction;
 import localloginfilter.impl.LocalLoginFilterActionListener;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
 /**
  * This action will block the default login (e.g. through the login.html or using the default sign in components).
  * This is typically applied when your application should only be accessible through SSO.
  */
-public class StartLocalLoginFilter extends CustomJavaAction<java.lang.Boolean>
+public class StartLocalLoginFilter extends UserAction<java.lang.Boolean>
 {
 	public StartLocalLoginFilter(IContext context)
 	{
